@@ -321,6 +321,7 @@
       align-items: center;
       gap: 8px;
       margin-top: 8px;
+      flex-wrap: wrap;
     }
 
     .hero-trust span {
@@ -527,7 +528,7 @@
       margin-left: 0;
     }
 
-    /* SECTION: FEATURES */
+    /* SECTION GENERIC */
     .section {
       margin-top: 52px;
     }
@@ -538,6 +539,7 @@
       justify-content: space-between;
       gap: 16px;
       margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     .section-title {
@@ -561,6 +563,7 @@
       line-height: 1.6;
     }
 
+    /* FEATURES GRID */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -620,7 +623,7 @@
       color: #e5e7eb;
     }
 
-    /* SECTION: HOW IT WORKS */
+    /* HOW IT WORKS */
     .steps {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -659,6 +662,172 @@
       font-size: 12px;
       color: var(--muted);
       line-height: 1.6;
+    }
+
+    /* LIVE CONCEPT */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 900px) {
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .concept-left,
+    .concept-right {
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 16px 16px 18px;
+      box-shadow: 0 16px 50px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept-left::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.35), transparent 60%),
+        radial-gradient(circle at 120% 120%, rgba(236, 72, 153, 0.35), transparent 60%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .concept-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .concept-tabs {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .concept-tab {
+      font-size: 11px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.92);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.14s ease-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .concept-tab span {
+      font-size: 13px;
+    }
+
+    .concept-tab.active {
+      background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(34, 197, 94, 0.08));
+      border-color: rgba(74, 222, 128, 0.7);
+      color: #ecfdf5;
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.35);
+    }
+
+    .concept-caption {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .concept-snippet {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      padding: 10px 11px;
+      line-height: 1.5;
+      color: #e5e7eb;
+      white-space: pre-line;
+      max-height: 140px;
+      overflow: auto;
+    }
+
+    .concept-right-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .concept-right-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .concept-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .concept-kpis {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .concept-kpi-card {
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+    }
+
+    .concept-kpi-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+
+    .concept-kpi-value {
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .concept-kpi-change {
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.18);
+      border: 1px solid rgba(74, 222, 128, 0.6);
+      color: #bbf7d0;
+    }
+
+    .concept-explainer {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 13px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      padding: 9px 10px;
     }
 
     /* CTA STRIP */
@@ -764,6 +933,7 @@
       </div>
       <div class="nav-links">
         <div class="badge-pill">Pre-launch • Private beta</div>
+        <a href="#live-concept" class="nav-link">Live concept</a>
         <a href="#features" class="nav-link">Features</a>
         <a href="#how" class="nav-link">How it works</a>
         <a href="#cta" class="nav-link">Waitlist</a>
@@ -810,7 +980,7 @@
             Get early access
             <span>⚡</span>
           </button>
-          <button class="btn-ghost" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+          <button class="btn-ghost" onclick="document.getElementById('live-concept').scrollIntoView({behavior: 'smooth'})">
             View live concept
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M5 19L19 5M9 5H19V15" stroke="#e5e7eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -907,6 +1077,99 @@
         </div>
       </aside>
     </main>
+
+    <!-- LIVE CONCEPT -->
+    <section id="live-concept" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Live concept</div>
+          <h2 class="section-title">Click a move. Watch the store change on paper.</h2>
+        </div>
+        <p class="section-text">
+          This isn’t wired to live Shopify data yet — but it shows exactly how STR8 Growth OS thinks:
+          each move has a clear KPI impact and a plain-English explanation you could ship to your team.
+        </p>
+      </div>
+
+      <div class="concept-grid">
+        <!-- LEFT: actions / "moves" -->
+        <div class="concept-left">
+          <div class="concept-inner">
+            <div class="section-kicker" style="margin-bottom:4px;">Choose a move</div>
+            <div style="font-size:13px; margin-bottom:4px;">What should the OS do first?</div>
+            <p class="concept-caption">
+              These are example "moves" the engine would surface based on your funnels, SKUs and cohorts.
+              Click one to see the projected upside.
+            </p>
+
+            <div class="concept-tabs">
+              <button class="concept-tab active" data-move="optimize">
+                <span>⚙️</span> Optimize store
+              </button>
+              <button class="concept-tab" data-move="revenue">
+                <span>📈</span> Boost revenue
+              </button>
+              <button class="concept-tab" data-move="fix">
+                <span>🩹</span> Fix weaknesses
+              </button>
+            </div>
+
+            <div class="concept-snippet" id="concept-snippet">
+[Move: Store-wide conversion tune-up]
+
+• Tighten hero messaging on top 3 traffic pages
+• Auto-generate 2 A/B variants for ATC copy
+• Clean up mobile layout for checkout step
+• Add social proof modules to PDPs
+
+The OS runs these changes as experiments and only keeps what wins.</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: KPIs & explanation -->
+        <div class="concept-right">
+          <div class="concept-inner">
+            <div class="concept-right-header">
+              <div class="concept-right-title" id="concept-title">
+                Conversion-focused optimization • Est. +14.8% weekly GMV
+              </div>
+              <div>Scenario only • For demo purposes</div>
+            </div>
+
+            <div class="concept-kpis">
+              <div class="concept-kpi-card">
+                <div class="concept-kpi-label">Projected conversion</div>
+                <div class="concept-kpi-value">
+                  <span id="kpi-conversion">3.1% → 3.7%</span>
+                  <span class="concept-kpi-change" id="kpi-conversion-change">+19%</span>
+                </div>
+              </div>
+              <div class="concept-kpi-card">
+                <div class="concept-kpi-label">Avg. order value</div>
+                <div class="concept-kpi-value">
+                  <span id="kpi-aov">$68 → $74</span>
+                  <span class="concept-kpi-change" id="kpi-aov-change">+8.8%</span>
+                </div>
+              </div>
+              <div class="concept-kpi-card">
+                <div class="concept-kpi-label">Refund risk</div>
+                <div class="concept-kpi-value">
+                  <span id="kpi-refund">7.2% → 6.1%</span>
+                  <span class="concept-kpi-change" id="kpi-refund-change">–15%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="concept-explainer" id="concept-explainer">
+              By fixing the first impression and smoothing out mobile friction, we unlock more of the traffic
+              you already have. This move tends to pay off fastest for brands with solid products but messy
+              on-site journeys. In production, this would launch as a controlled experiment and auto-rollback
+              if it underperforms.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- FEATURES -->
     <section id="features" class="section">
@@ -1033,7 +1296,7 @@
         </div>
         <div class="cta-sub">
           We’re onboarding a small group of DTC brands, agencies and operators who want to push past “just another
-          app” and actually compounding their store’s performance.
+          app” and actually compound their store’s performance.
         </div>
       </div>
       <div class="cta-actions">
@@ -1065,6 +1328,100 @@
   <script>
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Live concept logic
+    const moves = {
+      optimize: {
+        title: 'Conversion-focused optimization • Est. +14.8% weekly GMV',
+        snippet: `[Move: Store-wide conversion tune-up]
+
+• Tighten hero messaging on top 3 traffic pages
+• Auto-generate 2 A/B variants for ATC copy
+• Clean up mobile layout for checkout step
+• Add social proof modules to PDPs
+
+The OS runs these changes as experiments and only keeps what wins.`,
+        conversion: '3.1% → 3.7%',
+        conversionChange: '+19%',
+        aov: '$68 → $74',
+        aovChange: '+8.8%',
+        refund: '7.2% → 6.1%',
+        refundChange: '–15%',
+        explainer: `By fixing the first impression and smoothing out mobile friction, we unlock more of the traffic
+you already have. This move tends to pay off fastest for brands with solid products but messy
+on-site journeys. In production, this would launch as a controlled experiment and auto-rollback
+if it underperforms.`
+      },
+      revenue: {
+        title: 'AOV & LTV expansion • Est. +22.4% monthly revenue',
+        snippet: `[Move: Smart bundles + post-purchase ladder]
+
+• Create 3 data-backed bundles around your top SKUs
+• Add a post-purchase one-click upsell with margin-friendly items
+• Introduce VIP tier for top 8% of customers with early access & perks
+
+Designed to drive higher AOV without training people to wait for discounts.`,
+        conversion: '2.9% → 3.2%',
+        conversionChange: '+10%',
+        aov: '$71 → $86',
+        aovChange: '+21.1%',
+        refund: '6.4% → 6.0%',
+        refundChange: '–6%',
+        explainer: `Here the OS focuses on getting more value out of every checkout. It looks at attachment rates,
+product affinities and margin structure before proposing bundles or upsells. In a real deployment,
+this would sync with your email/SMS to reinforce the new VIP tier.`
+      },
+      fix: {
+        title: 'Risk & leak patching • Est. –19.3% lost revenue',
+        snippet: `[Move: Plug the silent leaks]
+
+• Identify 2 highest-friction steps in your funnel by drop-off %
+• Flag 3 SKUs with above-average refund probability
+• Pause 1 underperforming ad set sending low-intent traffic
+
+Protects your downside so growth doesn’t sit on a leaky foundation.`,
+        conversion: '3.0% → 3.3%',
+        conversionChange: '+10%',
+        aov: '$69 → $71',
+        aovChange: '+2.9%',
+        refund: '8.1% → 6.5%',
+        refundChange: '–19.7%',
+        explainer: `This move is about resilience. It hunts for bad traffic, fragile SKUs and UX cliffs that quietly eat
+profit. In a live environment, this would surface as alerts you can approve, with safe defaults that
+reduce risk even if you’re not constantly watching dashboards.`
+      }
+    };
+
+    const tabs = document.querySelectorAll('.concept-tab');
+    const snippetEl = document.getElementById('concept-snippet');
+    const titleEl = document.getElementById('concept-title');
+    const convEl = document.getElementById('kpi-conversion');
+    const convChangeEl = document.getElementById('kpi-conversion-change');
+    const aovEl = document.getElementById('kpi-aov');
+    const aovChangeEl = document.getElementById('kpi-aov-change');
+    const refundEl = document.getElementById('kpi-refund');
+    const refundChangeEl = document.getElementById('kpi-refund-change');
+    const explainerEl = document.getElementById('concept-explainer');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const moveKey = tab.getAttribute('data-move');
+        const move = moves[moveKey];
+
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        titleEl.textContent = move.title;
+        snippetEl.textContent = move.snippet;
+        convEl.textContent = move.conversion;
+        convChangeEl.textContent = move.conversionChange;
+        aovEl.textContent = move.aov;
+        aovChangeEl.textContent = move.aovChange;
+        refundEl.textContent = move.refund;
+        refundChangeEl.textContent = move.refundChange;
+        explainerEl.textContent = move.explainer;
+      });
+    });
   </script>
 </body>
 </html>
