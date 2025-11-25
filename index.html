@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STR8 Growth OS – AI for Shopify</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #050512;
+      --accent: #ff4ecd;
+      --accent-soft: rgba(255, 78, 205, 0.15);
+      --accent-2: #3b82f6;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --card: rgba(15, 23, 42, 0.9);
+      --border-subtle: rgba(148, 163, 184, 0.2);
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, #111827 0, #020617 40%, #000 85%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .bg-orbit {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.25), transparent 50%),
+        radial-gradient(circle at 80% 10%, rgba(236, 72, 153, 0.18), transparent 55%),
+        radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.18), transparent 55%);
+      filter: blur(2px);
+    }
+
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.25;
+      mix-blend-mode: soft-light;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 16px 72px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.75));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-pill {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 20%, #fde68a, #f97316 35%, #7c2d12 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #0b0b10;
+      box-shadow: 0 0 30px rgba(249, 115, 22, 0.7);
+    }
+
+    .logo-text-main {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.18s ease-out;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .badge-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: linear-gradient(to right, rgba(59, 130, 246, 0.25), rgba(236, 72, 153, 0.25));
+      border: 1px solid rgba(129, 140, 248, 0.6);
+      color: #e5e7eb;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4ade80, #22c55e);
+      color: #022c22;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.5);
+      transition: all 0.18s ease-out;
+    }
+
+    .nav-cta span {
+      font-size: 16px;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(34, 197, 94, 0.6);
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-left {
+      position: relative;
+      padding-right: 16px;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span.accent {
+      background: linear-gradient(120deg, #f97316, #facc15, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 35px rgba(249, 115, 22, 0.7);
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 20px;
+    }
+
+    .hero-metric-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hero-chip {
+      font-size: 11px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-chip strong {
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary {
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4ade80, #22c55e);
+      color: #022c22;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 18px 50px rgba(34, 197, 94, 0.5);
+      transition: all 0.18s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 60px rgba(34, 197, 94, 0.6);
+    }
+
+    .btn-ghost {
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      cursor: pointer;
+      background: rgba(15, 23, 42, 0.75);
+      color: #e5e7eb;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.18s ease-out;
+    }
+
+    .btn-ghost svg {
+      opacity: 0.7;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.95);
+      border-color: rgba(148, 163, 184, 0.9);
+    }
+
+    .hero-trust {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hero-trust span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-trust-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #facc15;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.9);
+    }
+
+    /* HERO RIGHT CARD */
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 20px;
+      background: radial-gradient(circle at top left,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(22px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-orbit {
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.35), transparent 60%),
+        radial-gradient(circle at 85% 80%, rgba(236, 72, 153, 0.35), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e5e7eb;
+    }
+
+    .hero-card-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-card-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .kpi-card {
+      padding: 10px 10px 11px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+    }
+
+    .kpi-label {
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .kpi-value {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .kpi-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(74, 222, 128, 0.6);
+      background: rgba(22, 163, 74, 0.18);
+      color: #bbf7d0;
+    }
+
+    .mini-chart {
+      margin-top: 6px;
+      height: 30px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(59, 130, 246, 0.2), rgba(236, 72, 153, 0.25));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-chart-fill {
+      position: absolute;
+      inset: 0;
+      width: 72%;
+      background: radial-gradient(circle at 0 50%, rgba(34, 197, 94, 0.6), transparent 65%);
+      animation: flow 6s ease-in-out infinite alternate;
+      opacity: 0.9;
+    }
+
+    @keyframes flow {
+      0% { transform: translateX(-10%); }
+      100% { transform: translateX(12%); }
+    }
+
+    .timeline {
+      margin-top: 10px;
+      padding: 8px 9px;
+      border-radius: 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 11px;
+    }
+
+    .timeline-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .timeline-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-tag {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(30, 64, 175, 0.55);
+      color: #dbeafe;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-label {
+      color: var(--muted);
+    }
+
+    .timeline-value {
+      font-weight: 500;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-card-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fde68a, #f97316, #7c2d12);
+      border: 1px solid #0b0b10;
+      margin-left: -6px;
+      box-shadow: 0 0 18px rgba(249, 115, 22, 0.6);
+    }
+
+    .hero-avatar:first-child {
+      margin-left: 0;
+    }
+
+    /* SECTION: FEATURES */
+    .section {
+      margin-top: 52px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .section-text {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.85));
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 15px;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #a5b4fc;
+      margin-bottom: 8px;
+    }
+
+    .feature-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feature-text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .feature-pill {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.94);
+      color: #e5e7eb;
+    }
+
+    /* SECTION: HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step-card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 14px 14px 15px;
+      font-size: 12px;
+    }
+
+    .step-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #a5b4fc;
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .step-text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CTA STRIP */
+    .cta-strip {
+      margin-top: 44px;
+      border-radius: 22px;
+      padding: 18px 18px 18px;
+      background: linear-gradient(120deg, rgba(34, 197, 94, 0.14), rgba(59, 130, 246, 0.12));
+      border: 1px solid rgba(74, 222, 128, 0.7);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: 0 20px 60px rgba(22, 163, 74, 0.45);
+    }
+
+    .cta-main {
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-sub {
+      font-size: 12px;
+      color: #e5e7eb;
+      max-width: 380px;
+      margin-top: 2px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline-dark {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.8);
+      transition: all 0.18s ease-out;
+      text-decoration: none;
+    }
+
+    .btn-outline-dark:hover {
+      transform: translateY(-1px);
+      border-color: rgba(148, 163, 184, 0.8);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .nav {
+        padding-inline: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbit"></div>
+  <div class="bg-noise"></div>
+
+  <div class="page">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-pill">S</div>
+        <div>
+          <div class="logo-text-main">STR8 GROWTH OS</div>
+          <div class="logo-text-sub">AI Engine for Shopify Merchants</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <div class="badge-pill">Pre-launch • Private beta</div>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how" class="nav-link">How it works</a>
+        <a href="#cta" class="nav-link">Waitlist</a>
+      </div>
+      <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'})">
+        Join beta <span>↗</span>
+      </button>
+    </header>
+
+    <!-- HERO -->
+    <main class="hero">
+      <!-- LEFT -->
+      <section class="hero-left">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          AI-native growth OS for Shopify merchants
+        </div>
+
+        <h1 class="hero-title">
+          Turn your Shopify store into a
+          <span class="accent">self-optimizing revenue engine.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          STR8 Growth OS plugs into your Shopify store, audits everything in real-time,
+          and gives you one-click upgrades that boost conversion, AOV and retention.
+          No dashboards to “figure out” — just actions that move your revenue.
+        </p>
+
+        <div class="hero-metric-row">
+          <div class="hero-chip">
+            <strong>+23%</strong> avg. conversion lift (pilot cohort)
+          </div>
+          <div class="hero-chip">
+            <strong>+31%</strong> AOV from smart bundles
+          </div>
+          <div class="hero-chip">
+            <strong>–18%</strong> refund & churn risk
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'})">
+            Get early access
+            <span>⚡</span>
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+            View live concept
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M5 19L19 5M9 5H19V15" stroke="#e5e7eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="hero-trust">
+          <span>
+            <span class="hero-trust-dot"></span>
+            Built for serious DTC & brand operators
+          </span>
+          <span>•</span>
+          <span>Zero code. 10 min install.</span>
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <aside class="hero-right" aria-label="Demo preview">
+        <div class="hero-card">
+          <div class="hero-card-orbit"></div>
+          <div class="hero-card-inner">
+            <div class="hero-card-header">
+              <div class="hero-card-pill">
+                <span class="hero-card-pill-dot"></span>
+                Live store audit
+              </div>
+              <div style="font-size:11px; color:var(--muted);">
+                Last sync • 12 sec ago
+              </div>
+            </div>
+
+            <div class="hero-card-kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-label">Revenue next 30 days</div>
+                <div class="kpi-value">
+                  $128,940
+                  <span class="kpi-badge">+19.7%</span>
+                </div>
+                <div class="mini-chart">
+                  <div class="mini-chart-fill"></div>
+                </div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Conversion health</div>
+                <div class="kpi-value">
+                  3.42%
+                </div>
+                <div style="font-size:10px; color:#a5b4fc; margin-top:4px;">
+                  3 fixes ready • Apply →
+                </div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Retention score</div>
+                <div class="kpi-value">
+                  8.4/10
+                </div>
+                <div style="font-size:10px; color:#bbf7d0; margin-top:4px;">
+                  Strong LTV • add VIP tier
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-row">
+                <span class="timeline-tag">Autopilot</span>
+                <span class="timeline-label">New flow</span>
+                <span class="timeline-value">Abandoned checkout win-back</span>
+              </div>
+              <div class="timeline-row">
+                <span class="timeline-label">Estimated lift</span>
+                <span class="timeline-value">+12.3% weekly GMV</span>
+              </div>
+              <div class="timeline-row">
+                <span class="timeline-label">Action</span>
+                <span class="timeline-value" style="color:#4ade80;">1-click apply →</span>
+              </div>
+            </div>
+
+            <div class="hero-card-footer">
+              <div>
+                <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.16em; color:#a5b4fc;">
+                  Real-time intelligence
+                </div>
+                <div>STR8 Growth AI is monitoring your store 24/7.</div>
+              </div>
+              <div class="hero-card-avatars">
+                <div class="hero-avatar"></div>
+                <div class="hero-avatar"></div>
+                <div class="hero-avatar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- FEATURES -->
+    <section id="features" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Why this isn’t “just another app”</div>
+          <h2 class="section-title">Autopilot, performance layer & revenue engine in one.</h2>
+        </div>
+        <p class="section-text">
+          STR8 Growth OS isn’t a dashboard you’ll ignore in 3 days. It’s a decision layer on top of Shopify
+          that identifies what’s broken, shows you the upside, and lets you ship the fix in one click.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-tag">Autopilot</div>
+          <h3 class="feature-title">AI that actually ships changes.</h3>
+          <p class="feature-text">
+            Auto-generate product pages, offers, and on-site experiments based on your live data,
+            not random templates. Your store keeps improving while you sleep.
+          </p>
+          <div class="feature-pill">No-code • 5 min set up</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">Performance</div>
+          <h3 class="feature-title">One screen that explains your whole store.</h3>
+          <p class="feature-text">
+            Forget 14 tabs of analytics. See exactly which pages, funnels and segments are leaking
+            money — with clear “fix this next” recommendations.
+          </p>
+          <div class="feature-pill">Built for operators</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">Revenue engine</div>
+          <h3 class="feature-title">Bundles, upsells & VIPs on autopilot.</h3>
+          <p class="feature-text">
+            Smart bundles, post-purchase upsells, VIP tiers and loyalty nudges that adapt to each
+            customer — all configured by the model, not by fiddling with rules.
+          </p>
+          <div class="feature-pill">Higher AOV & LTV</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">Acquisition</div>
+          <h3 class="feature-title">Media & creative that matches your store reality.</h3>
+          <p class="feature-text">
+            Quickly generate ad angles, hooks and landing pages grounded in what your best customers
+            already resonate with — not just generic AI copy.
+          </p>
+          <div class="feature-pill">TikTok • Meta • UGC</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">Risk</div>
+          <h3 class="feature-title">Refunds & churn, predicted before they spike.</h3>
+          <p class="feature-text">
+            Spot fragile cohorts, risky SKUs and bad-fit channels before they nuke your margins.
+            Turn “oh shit” moments into “caught it in time”.
+          </p>
+          <div class="feature-pill">Live risk radar</div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">Signals</div>
+          <h3 class="feature-title">Your own private growth brain.</h3>
+          <p class="feature-text">
+            Every week, you get a simple brief: what changed, why it matters, and the 3 actions
+            that will have the most impact on your revenue.
+          </p>
+          <div class="feature-pill">Operator brief</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">How it works</div>
+          <h2 class="section-title">Live Shopify data in, revenue-positive actions out.</h2>
+        </div>
+        <p class="section-text">
+          We’re not replacing Shopify. We sit on top of it as an intelligence layer that turns
+          your data into clean, compounding upgrades. Here’s the loop:
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step-card">
+          <div class="step-label">Step 1</div>
+          <h3 class="step-title">Connect your store in under 10 minutes.</h3>
+          <p class="step-text">
+            Install the STR8 Growth OS app, connect your Shopify store and key tools (email, ads)
+            and we’ll backfill your recent data securely.
+          </p>
+        </article>
+        <article class="step-card">
+          <div class="step-label">Step 2</div>
+          <h3 class="step-title">We run a full-stack growth audit.</h3>
+          <p class="step-text">
+            Our models analyze your funnels, SKUs, cohorts and traffic quality, then simulate what happens
+            if we change pricing, bundles, flows or creative.
+          </p>
+        </article>
+        <article class="step-card">
+          <div class="step-label">Step 3</div>
+          <h3 class="step-title">You approve moves, we execute.</h3>
+          <p class="step-text">
+            You’ll see a ranked list of “moves” with projected upside. Approve the ones that fit your brand
+            and we’ll push the changes live or generate assets for your team.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="cta-strip">
+      <div>
+        <div class="cta-main">
+          Be early. Shape the OS that Shopify brands run on.
+        </div>
+        <div class="cta-sub">
+          We’re onboarding a small group of DTC brands, agencies and operators who want to push past “just another
+          app” and actually compounding their store’s performance.
+        </div>
+      </div>
+      <div class="cta-actions">
+        <!-- Replace the # with your actual waitlist form or Typeform link -->
+        <a href="#" class="btn-outline-dark">
+          Join the private beta
+          <span>↗</span>
+        </a>
+        <!-- Replace with your GitHub repo URL -->
+        <a href="https://github.com/your-username/your-repo" class="btn-outline-dark">
+          View project on GitHub
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M9 5H19V15M19 5L5 19" stroke="#e5e7eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© <span id="year"></span> STR8 Growth OS. All rights reserved.</div>
+      <div>
+        Built by <a href="https://github.com/your-username" target="_blank" rel="noreferrer">your-username</a>
+        • Replace copy, plug in your own vibe 😈
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
